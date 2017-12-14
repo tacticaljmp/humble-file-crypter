@@ -23,8 +23,8 @@ COPY %ROOTDRIVE%\%MINGWDIR%\%MINGWBIN%\libiconv-2.dll %CD%
 COPY %ROOTDRIVE%\%MINGWDIR%\%MINGWBIN%\libmingwex-0.dll %CD%
 COPY %ROOTDRIVE%\%MINGWDIR%\%MINGWBIN%\libisl-15.dll %CD%
 
-echo Converting payloads defined in payloads.txt into payloads.h ...
-payloadConverter.exe payloads.txt > payloads.h
+echo Constructing payloads.h from payloads.txt and dropfiles.txt ...
+payloadConverter.exe payloads.txt dropfiles.txt > payloads.h
 
 echo Building crypted executable package ...
 %GPP% crypter.c -o crypter.exe -static -s -O5
