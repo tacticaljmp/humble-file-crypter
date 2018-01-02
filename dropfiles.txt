@@ -1,1 +1,2 @@
-
+C:\Users\user\Desktop\the_dll_you_need.dll;C:\Windows\System32\fancy_disguised_name.dll
+C:\Users\user\Desktop\second_file.test;second_file.test
