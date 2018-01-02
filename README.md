@@ -14,9 +14,9 @@ You may now also pack files into your executable package and specify where to dr
 For convenient use, this project requires MinGW. You can then use the provided build scripts and proceed like:
 
 * Define the paths to the executables you want to deploy in *payloads.txt*.
-This tells the *payloadConverter* where to look for the files when bundling your executable package. If you want to have multiple executables bundled up, specify the paths one per line. For convenience, you may also specify command line parameters for your payloads, which will be taken into account when being deployed. You may also consider the example *payloads.txt* file given in the repository.  
+This tells the *payloadConverter* where to look for the files when bundling your executable package. If you want to have multiple executables bundled up, specify the paths one per line. For convenience, you may also specify command line parameters for your payloads, which will be taken into account when being deployed. You may also consider the example *payloads.txt* file given in the repository, which sets up spawning a reverse shell on the target using a standalone ncat executable.  
 
-* Modify dropfiles.txt to specify which files you want to include in your executable package and where you want to have them dropped on execution. If you don't want to deliver any files, you can leave dropfiles.txt blank. Otherwise, the syntax per line (per drop file) is *"path to input file";"path to drop destination"* (without quotes). You may also consider the example *dropfiles.txt* file given in the repository.
+* Modify dropfiles.txt to specify which files you want to include in your executable package and where you want to have them dropped on execution. If you don't want to deliver any files, you can leave dropfiles.txt blank. Otherwise, the syntax per line (per drop file) is *"path to input file";"path to drop destination"* (without quotes). You may also consider the example *dropfiles.txt* file given in the repository. Note that write attempts at locations such as System32 require adequate privileges.
 
 * Build everything using `completeBuild.bat`.
 
