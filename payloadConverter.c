@@ -33,7 +33,12 @@ int main(int argc, char *argv[]) {
 	payloadCounter = 0;		
 	
 	// Extract payload paths line by line
-	while(fgets(currentLine, sizeof(currentLine), payloadList)) {		
+	while(fgets(currentLine, sizeof(currentLine), payloadList)) {
+		// Skip if current line is empty (tackles unintended newline characters)
+		if(strlen(currentLine) < 1) {
+			continue;
+		}	
+		
 		// Generate current array name
 		strcpy(currentArrayName, "payload");
 		sprintf(payloadCounterAsString, "%d", payloadCounter);
@@ -168,6 +173,11 @@ int main(int argc, char *argv[]) {
 	
 	// Extract dropfile paths line by line
 	while(fgets(currentLine, sizeof(currentLine), payloadList)) {
+		// Skip if current line is empty (tackles unintended newline characters)
+		if(strlen(currentLine) < 1) {
+			continue;
+		}		
+		
 		// Generate current array name
 		strcpy(currentArrayName, "dropfile");
 		sprintf(payloadCounterAsString, "%d", payloadCounter);
